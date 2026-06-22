@@ -71,15 +71,22 @@ export default function CustomBottomNavigation({
                             ]}
                             activeOpacity={0.8}
                         >
-                            <Ionicons
-                                name={isFocused ? config.activeIcon : config.icon}
-                                size={22}
-                                color={
-                                    isFocused
-                                        ? colors.bottomNavActiveLabel
-                                        : colors.bottomNavInactiveLabel
-                                }
-                            />
+                            <View style={styles.iconWrapper}>
+                                <Ionicons
+                                    name={isFocused ? config.activeIcon : config.icon}
+                                    size={22}
+                                    color={
+                                        isFocused
+                                            ? colors.bottomNavActiveLabel
+                                            : colors.bottomNavInactiveLabel
+                                    }
+                                />
+                                {(route.name === "MyEvents" && events.length > 0) && (
+                                    <View style={styles.badge}>
+                                        <CustomText style={styles.badgeText}>{events.length}</CustomText>
+                                    </View>
+                                )}
+                            </View>
                             <CustomText
                                 variant={CustomTextVariant.SUBTEXT}
                                 style={[
@@ -88,11 +95,6 @@ export default function CustomBottomNavigation({
                             >
                                 {config.label}
                             </CustomText>
-                            {(route.name === "MyEvents" && events.length > 0) && (
-                                <View style={styles.badge}>
-                                    <CustomText style={styles.badgeText}>{events.length}</CustomText>
-                                </View>
-                            )}
                         </TouchableOpacity>
                     );
                 })}
@@ -104,6 +106,7 @@ export default function CustomBottomNavigation({
 function createStyles(colors: ColorTheme, insetBottom: number) {
     return StyleSheet.create({
         container: {
+            position: "absolute",
             left: 0,
             right: 0,
             bottom: 0,
@@ -140,6 +143,13 @@ function createStyles(colors: ColorTheme, insetBottom: number) {
         tabInactive: {
             backgroundColor: "transparent",
         },
+        iconWrapper: {
+            width: 28,
+            height: 24,
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+        },
         labelActive: {
             fontSize: 12,
             color: colors.bottomNavActiveLabel,
@@ -152,8 +162,8 @@ function createStyles(colors: ColorTheme, insetBottom: number) {
         },
         badge: {
             position: "absolute",
-            top: 3,
-            right: "40%",
+            top: -8,
+            right: -8,
             minWidth: 20,
             height: 20,
             borderRadius: 20,

@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { FlatList, StyleSheet, Text, View, ActivityIndicator, useWindowDimensions } from "react-native";
 import { useTheme } from "../../core/hooks/useTheme";
 import { useRSVP } from "../viewmodels/hooks/useRSVP";
 import { Events } from "../../domain/model/Events";
@@ -13,6 +13,9 @@ type MyEventsNavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
 function MyEventsScreen() {
     const theme = useTheme();
+    const { width } = useWindowDimensions();
+    const isTwoColumn = width >= 768;
+    const numColumns = isTwoColumn ? 2 : 1;
     const styles = createStyles(theme.colors);
     const { events, isLoading } = useRSVP();
     const navigation = useNavigation<MyEventsNavigationProp>();
@@ -35,12 +38,19 @@ function MyEventsScreen() {
     return (
         <SafeAreaView style={styles.safeArea} edges={["top"]}>
             <FlatList
+                key={`my-events-list-${numColumns}`}
                 data={events}
+                numColumns={numColumns}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
-                    <EventListItem event={item} onPress={() => handleEventPress(item)} />
+                    <EventListItem
+                        event={item}
+                        onPress={() => handleEventPress(item)}
+                        containerStyle={isTwoColumn ? styles.gridCard : styles.singleColumnCard}
+                    />
                 )}
+                columnWrapperStyle={isTwoColumn ? styles.columnWrapper : undefined}
                 contentContainerStyle={styles.listContent}
                 ListHeaderComponent={
                     <View style={styles.header}>
@@ -78,6 +88,18 @@ function createStyles(colors: any) {
         },
         listContent: {
             paddingBottom: 20,
+        },
+        singleColumnCard: {
+            marginHorizontal: 16,
+            marginVertical: 12,
+        },
+        gridCard: {
+            flex: 1,
+            marginHorizontal: 8,
+            marginVertical: 8,
+        },
+        columnWrapper: {
+            paddingHorizontal: 8,
         },
         header: {
             paddingHorizontal: 20,

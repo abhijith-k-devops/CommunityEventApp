@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity, StyleProp, ViewStyle } from "react-native";
 import { ColorTheme } from "../../../core/theme/Colors";
 import { useTheme } from "../../../core/hooks/useTheme";
 import { Events } from "../../../domain/model/Events";
@@ -13,9 +13,10 @@ import { useRSVP } from "../../viewmodels/hooks/useRSVP";
 interface EventListItemProps {
     event: Events;
     onPress?: () => void;
+    containerStyle?: StyleProp<ViewStyle>;
 }
 
-function EventListItem({ event, onPress }: EventListItemProps) {
+function EventListItem({ event, onPress, containerStyle }: EventListItemProps) {
     const { colors } = useTheme();
     const styles = createStyles(colors);
     const { isRSVP, toggleRSVP } = useRSVP();
@@ -23,7 +24,7 @@ function EventListItem({ event, onPress }: EventListItemProps) {
         await toggleRSVP(event);
     }, [event, toggleRSVP]);
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress} activeOpacity={0.7}>
+        <TouchableOpacity style={[styles.container, containerStyle]} onPress={onPress} activeOpacity={0.7}>
             {/* Background Image */}
             <Image
                 source={{ uri: event.imageUrl }}
@@ -98,8 +99,6 @@ function createStyles(colors: ColorTheme) {
     return StyleSheet.create({
         container: {
             height: 280,
-            marginHorizontal: 16,
-            marginVertical: 12,
             borderRadius: 16,
             overflow: "hidden",
             backgroundColor: colors.backgroundSecondary,

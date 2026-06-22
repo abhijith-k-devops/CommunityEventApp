@@ -16,9 +16,11 @@ function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-      <SafeAreaProvider>
+      <SafeAreaProvider style={styles.root}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <AppContent />
+        <View style={styles.root}>
+          <AppContent />
+        </View>
       </SafeAreaProvider>
   );
 }
@@ -27,15 +29,23 @@ function AppContent() {
 
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <EventContextProvider>
-          <RSVPContextProvider>
-            <AppNavigation />
-          </RSVPContextProvider>
-        </EventContextProvider>
-      </NavigationContainer>
+      <View style={styles.root}>
+        <NavigationContainer>
+          <EventContextProvider>
+            <RSVPContextProvider>
+              <AppNavigation />
+            </RSVPContextProvider>
+          </EventContextProvider>
+        </NavigationContainer>
+      </View>
     </ThemeProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+});
 
 export default App;

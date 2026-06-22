@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, ActivityIndicator, ScrollView } from "react-native";
+import { StyleSheet, Text, View, FlatList, ActivityIndicator, ScrollView, useWindowDimensions } from "react-native";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { EventContext } from "../viewmodels/contexts/EventsContext";
 import EventListItem from "./components/EventListItem";
@@ -17,7 +17,10 @@ const FILTERS = ["All", "Music", "Sports", "Tech", "Food", "Other"];
 
 function EventsDiscoverScreen() {
     const context = useContext(EventContext);
-    
+    const { width } = useWindowDimensions();
+    const isTwoColumn = width >= 768;
+    const numColumns = isTwoColumn ? 2 : 1;
+
     const { colors } = useTheme();
     const [selectedFilter, setSelectedFilter] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
@@ -83,15 +86,19 @@ function EventsDiscoverScreen() {
     return (
         <SafeAreaView style={styles.safeArea} edges={["top"]}>
             <FlatList
+                key={`discover-list-${numColumns}`}
                 data={moreEvents}
+                numColumns={numColumns}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <EventListItem
                         event={item}
                         onPress={() => handleItemClick(item)}
+                        containerStyle={isTwoColumn ? styles.gridCard : styles.singleColumnCard}
                     />
                 )}
+                columnWrapperStyle={isTwoColumn ? styles.columnWrapper : undefined}
                 contentContainerStyle={styles.listContainer}
                 ListEmptyComponent={
                     filteredEvents.length === 0 ? (
@@ -139,13 +146,16 @@ function EventsDiscoverScreen() {
                             </ScrollView>
                         </View>
 
-                        {featuredEvents.map((featuredEvent) => (
-                            <EventListItem
-                                key={featuredEvent.id}
-                                event={featuredEvent}
-                                onPress={() => handleItemClick(featuredEvent)}
-                            />
-                        ))}
+                        <View style={isTwoColumn ? styles.featuredGrid : undefined}>
+                            {featuredEvents.map((featuredEvent) => (
+                                <EventListItem
+                                    key={featuredEvent.id}
+                                    event={featuredEvent}
+                                    onPress={() => handleItemClick(featuredEvent)}
+                                    containerStyle={isTwoColumn ? styles.featuredGridCard : styles.singleColumnCard}
+                                />
+                            ))}
+                        </View>
 
                         {moreEvents.length > 0 && (
                             <View style={styles.moreEventsHeader}>
@@ -252,6 +262,28 @@ function createStyles(colors: any) {
             fontSize: 28 / 2,
             letterSpacing: 2,
             fontFamily: "Poppins-Medium",
+        },
+        singleColumnCard: {
+            marginHorizontal: 16,
+            marginVertical: 12,
+        },
+        gridCard: {
+            flex: 1,
+            marginHorizontal: 8,
+            marginVertical: 8,
+        },
+        columnWrapper: {
+            paddingHorizontal: 8,
+        },
+        featuredGrid: {
+            flexDirection: "row",
+            flexWrap: "wrap",
+            paddingHorizontal: 8,
+        },
+        featuredGridCard: {
+            width: "48%",
+            marginHorizontal: "1%",
+            marginVertical: 8,
         },
         listContainer: {
             paddingTop: 2,
