@@ -40,9 +40,9 @@ export function RSVPContextProvider({ children }: { children: React.ReactNode })
   };
 
   const saveRSVPs = async (items: Events[]) => {
+    setEvents(items);
     try {
       await AsyncStorage.setItem(RSPV_STORAGE_KEY, JSON.stringify(items));
-      setEvents(items);
     } catch (error) {
       console.error("Error saving RSVPs:", error);
     }

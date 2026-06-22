@@ -20,6 +20,9 @@ function EventListItem({ event, onPress, containerStyle }: EventListItemProps) {
     const { colors } = useTheme();
     const styles = createStyles(colors);
     const { isRSVP, toggleRSVP } = useRSVP();
+    const isRsvped = isRSVP(event.id);
+    const displayedAttendeeCount = event.attendeeCount + (isRsvped ? 1 : 0);
+
     const handleRSVPToggle = useCallback(async () => {
         await toggleRSVP(event);
     }, [event, toggleRSVP]);
@@ -43,8 +46,8 @@ function EventListItem({ event, onPress, containerStyle }: EventListItemProps) {
 
             <FavouriteIconComponent
                 onToggle={handleRSVPToggle}
-                isFavourite={isRSVP(event.id)}
-                count={event.attendeeCount}
+                isFavourite={isRsvped}
+                count={displayedAttendeeCount}
                 style={styles.heartContainer}
             />
 
@@ -87,7 +90,7 @@ function EventListItem({ event, onPress, containerStyle }: EventListItemProps) {
                             color={colors.white}
                             style={styles.detailIcon}
                         />
-                        <CustomText variant={CustomTextVariant.SUBTEXT} style={styles.subtext}>{event.attendeeCount}</CustomText>
+                        <CustomText variant={CustomTextVariant.SUBTEXT} style={styles.subtext}>{displayedAttendeeCount}</CustomText>
                     </View>
                 </View>
             </View>

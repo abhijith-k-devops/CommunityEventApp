@@ -35,6 +35,9 @@ function EventDetailsScreen() {
             await toggleRSVP(event);
     }, [event, toggleRSVP]);
 
+    const isRsvped = isRSVP(event.id);
+    const displayedAttendeeCount = event.attendeeCount + (isRsvped ? 1 : 0);
+
     const tags = useMemo(() => {
         const base = [`#${event.category || "Event"}`, "#International", "#Masterclass", "#Street Food"];
         return base.filter((t, i, arr) => arr.indexOf(t) === i);
@@ -101,10 +104,10 @@ function EventDetailsScreen() {
 
                     <View style={styles.rsvpCard}>
                         <View>
-                            <CustomText style={styles.attendingCount}>{event.attendeeCount}</CustomText>
+                            <CustomText style={styles.attendingCount}>{displayedAttendeeCount}</CustomText>
                             <CustomText style={styles.attendingLabel}>people going</CustomText>
                         </View>
-                        <FavouriteIconComponent isFavourite={isRSVP(event.id)} onToggle={handleRSVPToggle} count={event.attendeeCount}/>
+                        <FavouriteIconComponent isFavourite={isRsvped} onToggle={handleRSVPToggle} count={displayedAttendeeCount}/>
                     </View>
 
                     <CustomText variant={CustomTextVariant.SUBTITLE} style={styles.sectionTitle}>
@@ -124,7 +127,7 @@ function EventDetailsScreen() {
                         <CustomText variant={CustomTextVariant.SUBTITLE} style={styles.attendeesTitle}>
                             Attendees
                         </CustomText>
-                        <CustomText style={styles.attendeesSub}>{event.attendeeCount} going</CustomText>
+                        <CustomText style={styles.attendeesSub}>{displayedAttendeeCount} going</CustomText>
                     </View>
 
                     <View style={styles.attendeesRow}>
@@ -135,7 +138,7 @@ function EventDetailsScreen() {
                                 style={[styles.avatar, index > 0 ? styles.avatarStacked : null]}
                             />
                         ))}
-                        <CustomText style={styles.moreText}>+{Math.max(event.attendeeCount - attendees.length, 0)} more</CustomText>
+                        <CustomText style={styles.moreText}>+{Math.max(displayedAttendeeCount - attendees.length, 0)} more</CustomText>
                     </View>
 
                     {primaryHost ? (
