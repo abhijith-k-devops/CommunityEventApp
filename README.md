@@ -1,137 +1,134 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# CommunityEventApp
 
-# Getting Started
+React Native community event app with Discover, event details, RSVP state, host profiles, favorites/my events, search, and a React Native Web target.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
-
-## Step 1: Start Metro
-
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Setup and Run
 
 ```sh
-# Using npm
+npm install
 npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+npm run ios
 npm run android
-
-# OR using Yarn
-yarn android
+npm run web
 ```
 
-### iOS
+Notes:
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+- `npm run web` starts the Webpack dev server using `webpack.web.js` on port `8082` and serves the compiled files from `dist`.
+- For iOS first-time setup, install CocoaPods if needed:
 
 ```sh
 bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
 bundle exec pod install
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Screenshots
+
+> Place screenshot files in `src/assets/screenshots` with the names below.
+
+### Home
+
+| Light | Dark | Web |
+|---|---|---|
+| `src/assets/screenshots/Home(light).png` | `src/assets/screenshots/Home(dark).png` | `src/assets/screenshots/web-home.png` |
+
+### Event Details
+
+| Details Screen |
+|---|
+| `src/assets/screenshots/Event-details.png` |
+| `src/assets/screenshots/web-event-details.png` |
+
+### My Events
+
+| Saved Events Screen |
+|---|
+| `src/assets/screenshots/My-events.png` |
+
+### Host Details
+
+| Host Details Screen |
+|---|
+| `src/assets/screenshots/host-details.png` |
+| `src/assets/screenshots/web-host-details.png` |
+
+### Search
+
+| Search Screen |
+|---|
+| `src/assets/screenshots/Over-search.png` |
+| `src/assets/screenshots/Search-with-result.png` |
+| `src/assets/screenshots/Tab-filtering.png` |
+
+### Misc
+
+| Raw Capture |
+|---|
+| `src/assets/screenshots/Screenshot_1782140208.png` |
+
+## Project Structure
+
+- `src/core`: navigation, shared components, theme, hooks, app-level types
+- `src/data`: repository implementations, data sources, and mappers
+- `src/domain`: contracts, models, use cases, and business logic
+- `src/presentation`: screens, view models, context providers, and UI components
+
+## Technical Decisions
+
+### 1) State Management Rationale
+
+- Chosen approach: React Context + hooks (`useRSVP`, `useEvent`, `useTheme`).
+- Why: shared app state is moderate and can be managed by lightweight provider/hook pairs.
+- Benefits:
+    - Simple and explicit data flow.
+    - Minimal boilerplate.
+    - Good TypeScript ergonomics.
+
+### 2) Architecture Choices
+
+- Pattern used: layered separation by responsibility.
+- `domain`: use cases and repository interfaces.
+- `data`: repository implementations and remote/local data access.
+- `presentation`: UI screens, components, and state orchestration.
+- Rationale:
+    - Keeps UI independent of data source details.
+    - Improves maintainability and testability.
+
+### 3) Persistence Strategy
+
+- Local persistence is implemented with `@react-native-async-storage/async-storage`.
+- Persisted data:
+    - RSVP state.
+- Rationale:
+    - Works offline.
+    - Lightweight and sufficient for this app.
+    - Easy hydration on app launch.
+
+### 4) Performance and Security Considerations
+
+- Performance:
+    - `FlatList` for list rendering.
+    - `useMemo` and `useCallback` in key UI paths.
+    - Responsive web layout logic for tablets and desktop.
+- Security:
+    - No sensitive secrets stored in AsyncStorage.
+    - Navigation params are typed via TypeScript.
+
+### 5) Testing Strategy
+
+- Framework: Jest + React Test Renderer.
+- Current coverage focus:
+    - Context provider logic.
+    - Component rendering and RSVP behavior.
+- Strategy:
+    - Unit tests for provider behavior and shared components.
+    - Behavioral assertions for navigation and conditionals.
+
+## Useful Scripts
 
 ```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npm start        # Start Metro
+npm test         # Run tests
+npm run lint     # Run eslint
+npm run web      # Run webpack dev server
 ```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
-
-## Screenshots & Recordings
-
-UI screenshots are stored in `src/assets/screenshots/`.
-
-Table below groups the project screenshots by screen and purpose.
-
-| Screen | Purpose | File |
-|---|---|---|
-| Home (light) | Discover / landing (light theme) | [src/assets/screenshots/Home(light).png](src/assets/screenshots/Home(light).png) |
-| Home (dark) | Discover / landing (dark theme) | [src/assets/screenshots/Home(dark).png](src/assets/screenshots/Home(dark).png) |
-| Web Home | Discover view (web) | [src/assets/screenshots/web-home.png](src/assets/screenshots/web-home.png) |
-| Event Details (mobile) | Event detail view | [src/assets/screenshots/Event-details.png](src/assets/screenshots/Event-details.png) |
-| Event Details (web) | Event detail view (web) | [src/assets/screenshots/web-event-details.png](src/assets/screenshots/web-event-details.png) |
-| My Events | RSVP / saved events list | [src/assets/screenshots/My-events.png](src/assets/screenshots/My-events.png) |
-| Host Details | Host profile & stats | [src/assets/screenshots/host-details.png](src/assets/screenshots/host-details.png) |
-| Host Details (web) | Host profile (web) | [src/assets/screenshots/web-host-details.png](src/assets/screenshots/web-host-details.png) |
-| Search Overlay | Search empty / overlay state | [src/assets/screenshots/Over-search.png](src/assets/screenshots/Over-search.png) |
-| Search Results | Search with matches | [src/assets/screenshots/Search-with-result.png](src/assets/screenshots/Search-with-result.png) |
-| Filter Tabs | Filter chip / tab interactions | [src/assets/screenshots/Tab-filtering.png](src/assets/screenshots/Tab-filtering.png) |
-| Raw Capture | Misc / raw screenshot | [src/assets/screenshots/Screenshot_1782140208.png](src/assets/screenshots/Screenshot_1782140208.png) |
-
-### Screenshot Guidelines
-
-Put UI screenshots and short screen recordings in `src/assets/screenshots/`.
-
-Recommended filenames:
-
-- discover.png
-- event-details.png
-- my-events.png
-- bottom-nav.png
-- web-recording.mp4
-
-Tips:
-
-- Keep images reasonably sized (max 1920x1080) and use PNG or JPG.
-- If you prefer not to commit binaries, store them in cloud storage and add links here.
-
-If you'd like this README left at the repository root as well, tell me and I can duplicate it back to `README.md`.
