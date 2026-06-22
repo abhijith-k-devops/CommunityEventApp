@@ -30,41 +30,41 @@ bundle exec pod install
 
 | Light | Dark | Web |
 |---|---|---|
-| `src/assets/screenshots/Home(light).png` | `src/assets/screenshots/Home(dark).png` | `src/assets/screenshots/web-home.png` |
+| <img src="src/assets/screenshots/Home(light).png" width="260" alt="Home Light" /> | <img src="src/assets/screenshots/Home(dark).png" width="260" alt="Home Dark" /> | <img src="src/assets/screenshots/web-home.png" width="260" alt="Web Home" /> |
 
 ### Event Details
 
 | Details Screen |
 |---|
-| `src/assets/screenshots/Event-details.png` |
-| `src/assets/screenshots/web-event-details.png` |
+| <img src="src/assets/screenshots/Event-details.png" width="260" alt="Event Details" /> |
+| <img src="src/assets/screenshots/web-event-details.png" width="260" alt="Web Event Details" /> |
 
 ### My Events
 
 | Saved Events Screen |
 |---|
-| `src/assets/screenshots/My-events.png` |
+| <img src="src/assets/screenshots/My-events.png" width="260" alt="My Events" /> |
 
 ### Host Details
 
 | Host Details Screen |
 |---|
-| `src/assets/screenshots/host-details.png` |
-| `src/assets/screenshots/web-host-details.png` |
+| <img src="src/assets/screenshots/host-details.png" width="260" alt="Host Details" /> |
+| <img src="src/assets/screenshots/web-host-details.png" width="260" alt="Web Host Details" /> |
 
 ### Search
 
 | Search Screen |
 |---|
-| `src/assets/screenshots/Over-search.png` |
-| `src/assets/screenshots/Search-with-result.png` |
-| `src/assets/screenshots/Tab-filtering.png` |
+| <img src="src/assets/screenshots/Over-search.png" width="260" alt="Search Overlay" /> |
+| <img src="src/assets/screenshots/Search-with-result.png" width="260" alt="Search Results" /> |
+| <img src="src/assets/screenshots/Tab-filtering.png" width="260" alt="Tab Filtering" /> |
 
 ### Misc
 
 | Raw Capture |
 |---|
-| `src/assets/screenshots/Screenshot_1782140208.png` |
+| <img src="src/assets/screenshots/Screenshot_1782140208.png" width="260" alt="Raw Capture" /> |
 
 ## Project Structure
 
