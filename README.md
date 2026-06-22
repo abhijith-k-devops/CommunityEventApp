@@ -36,8 +36,7 @@ bundle exec pod install
 
 | Details(Mobile) | Details(Web) |
 |---|---|
-| <img src="src/assets/screenshots/Event-details.png" width="260" alt="Event Details" /> |
-| <img src="src/assets/screenshots/web-event-details.png" width="260" alt="Web Event Details" /> |
+| <img src="src/assets/screenshots/Event-details.png" width="260" alt="Event Details" /> | <img src="src/assets/screenshots/web-event-details.png" width="260" alt="Web Event Details" /> |
 
 ### My Events
 
@@ -47,18 +46,15 @@ bundle exec pod install
 
 ### Host Details
 
-| Host Details Screen |
-|---|
-| <img src="src/assets/screenshots/host-details.png" width="260" alt="Host Details" /> |
-| <img src="src/assets/screenshots/web-host-details.png" width="260" alt="Web Host Details" /> |
+| Host Details Screen(Mobile) | Host Details Screen(Web) |
+|---|---|
+| <img src="src/assets/screenshots/host-details.png" width="260" alt="Host Details" /> | <img src="src/assets/screenshots/web-host-details.png" width="260" alt="Web Host Details" /> |
 
 ### Search
 
-| Search Screen |
-|---|
-| <img src="src/assets/screenshots/Over-search.png" width="260" alt="Search Overlay" /> |
-| <img src="src/assets/screenshots/Search-with-result.png" width="260" alt="Search Results" /> |
-| <img src="src/assets/screenshots/Tab-filtering.png" width="260" alt="Tab Filtering" /> |
+| Search without result | Search with result | Search tab filtering |
+|---|---|---|
+| <img src="src/assets/screenshots/Over-search.png" width="260" alt="Search Overlay" /> | <img src="src/assets/screenshots/Search-with-result.png" width="260" alt="Search Results" /> | <img src="src/assets/screenshots/Tab-filtering.png" width="260" alt="Tab Filtering" /> |
 
 ### Misc
 
