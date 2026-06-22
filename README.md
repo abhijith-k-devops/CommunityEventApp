@@ -34,8 +34,8 @@ bundle exec pod install
 
 ### Event Details
 
-| Details Screen |
-|---|
+| Details(Mobile) | Details(Web) |
+|---|---|
 | <img src="src/assets/screenshots/Event-details.png" width="260" alt="Event Details" /> |
 | <img src="src/assets/screenshots/web-event-details.png" width="260" alt="Web Event Details" /> |
 
