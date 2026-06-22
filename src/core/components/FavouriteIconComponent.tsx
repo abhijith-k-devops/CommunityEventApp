@@ -14,8 +14,9 @@ interface FavouriteIconComponentProps {
     type?: FavouriteIconType;
     style?: any;
     count?: number;
+    testID?: string;
 }
-export default function FavouriteIconComponent({ isFavourite, onToggle, type = FavouriteIconType.LIST_ITEM, style, count }
+export default function FavouriteIconComponent({ isFavourite, onToggle, type = FavouriteIconType.LIST_ITEM, style, count, testID }
     : FavouriteIconComponentProps) {
         const { colors } = useTheme();
 
@@ -23,6 +24,7 @@ export default function FavouriteIconComponent({ isFavourite, onToggle, type = F
         
         return (
             <TouchableOpacity
+                testID={testID}
                 onPress={onToggle}
                 activeOpacity={0.85}
                 style={[

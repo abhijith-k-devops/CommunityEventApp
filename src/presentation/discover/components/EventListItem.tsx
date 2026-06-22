@@ -27,7 +27,7 @@ function EventListItem({ event, onPress, containerStyle }: EventListItemProps) {
         await toggleRSVP(event);
     }, [event, toggleRSVP]);
     return (
-        <TouchableOpacity style={[styles.container, containerStyle]} onPress={onPress} activeOpacity={0.7}>
+        <TouchableOpacity testID="event-list-item" style={[styles.container, containerStyle]} onPress={onPress} activeOpacity={0.7}>
             {/* Background Image */}
             <Image
                 source={{ uri: event.imageUrl }}
@@ -45,6 +45,7 @@ function EventListItem({ event, onPress, containerStyle }: EventListItemProps) {
             {/* Heart Icon with Count */}
 
             <FavouriteIconComponent
+                testID="favourite-icon"
                 onToggle={handleRSVPToggle}
                 isFavourite={isRsvped}
                 count={displayedAttendeeCount}
