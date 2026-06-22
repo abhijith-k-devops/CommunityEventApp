@@ -95,3 +95,43 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+## Screenshots & Recordings
+
+UI screenshots are stored in `src/assets/screenshots/`.
+
+Table below groups the project screenshots by screen and purpose.
+
+| Screen | Purpose | File |
+|---|---|---|
+| Home (light) | Discover / landing (light theme) | [src/assets/screenshots/Home(light).png](src/assets/screenshots/Home(light).png) |
+| Home (dark) | Discover / landing (dark theme) | [src/assets/screenshots/Home(dark).png](src/assets/screenshots/Home(dark).png) |
+| Web Home | Discover view (web) | [src/assets/screenshots/web-home.png](src/assets/screenshots/web-home.png) |
+| Event Details (mobile) | Event detail view | [src/assets/screenshots/Event-details.png](src/assets/screenshots/Event-details.png) |
+| Event Details (web) | Event detail view (web) | [src/assets/screenshots/web-event-details.png](src/assets/screenshots/web-event-details.png) |
+| My Events | RSVP / saved events list | [src/assets/screenshots/My-events.png](src/assets/screenshots/My-events.png) |
+| Host Details | Host profile & stats | [src/assets/screenshots/host-details.png](src/assets/screenshots/host-details.png) |
+| Host Details (web) | Host profile (web) | [src/assets/screenshots/web-host-details.png](src/assets/screenshots/web-host-details.png) |
+| Search Overlay | Search empty / overlay state | [src/assets/screenshots/Over-search.png](src/assets/screenshots/Over-search.png) |
+| Search Results | Search with matches | [src/assets/screenshots/Search-with-result.png](src/assets/screenshots/Search-with-result.png) |
+| Filter Tabs | Filter chip / tab interactions | [src/assets/screenshots/Tab-filtering.png](src/assets/screenshots/Tab-filtering.png) |
+| Raw Capture | Misc / raw screenshot | [src/assets/screenshots/Screenshot_1782140208.png](src/assets/screenshots/Screenshot_1782140208.png) |
+
+### Screenshot Guidelines
+
+Put UI screenshots and short screen recordings in `src/assets/screenshots/`.
+
+Recommended filenames:
+
+- discover.png
+- event-details.png
+- my-events.png
+- bottom-nav.png
+- web-recording.mp4
+
+Tips:
+
+- Keep images reasonably sized (max 1920x1080) and use PNG or JPG.
+- If you prefer not to commit binaries, store them in cloud storage and add links here.
+
+If you'd like this README left at the repository root as well, tell me and I can duplicate it back to `README.md`.
