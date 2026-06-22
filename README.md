@@ -56,12 +56,6 @@ bundle exec pod install
 |---|---|---|
 | <img src="src/assets/screenshots/Over-search.png" width="260" alt="Search Overlay" /> | <img src="src/assets/screenshots/Search-with-result.png" width="260" alt="Search Results" /> | <img src="src/assets/screenshots/Tab-filtering.png" width="260" alt="Tab Filtering" /> |
 
-### Misc
-
-| Raw Capture |
-|---|
-| <img src="src/assets/screenshots/Screenshot_1782140208.png" width="260" alt="Raw Capture" /> |
-
 ## Project Structure
 
 - `src/core`: navigation, shared components, theme, hooks, app-level types
