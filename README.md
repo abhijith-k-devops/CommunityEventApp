@@ -19,6 +19,7 @@ Notes:
 
 ```sh
 bundle install
+cd ios
 bundle exec pod install
 ```
 
