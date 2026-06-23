@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Events } from "../../../domain/model/Events";
 import { EventsRepositoryImpl } from "../../../data/repository/EventsRepositoryImpl";
-import { EventsUseCase } from "../../../domain/useCase/EventsUseCase";
+import { getEventsUseCase } from "../../../domain/useCase/EventsUseCase";
 
 interface EventContextProviderProps {
     children: React.ReactNode;
@@ -24,14 +24,14 @@ export function EventContextProvider({children}: EventContextProviderProps) {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<string | null>(null);
 
-    const injectedUseCase: EventsUseCase = new EventsUseCase(new EventsRepositoryImpl());
+    const eventRepository = useMemo(() => new EventsRepositoryImpl(), []);
 
     async function fetchEvents() {
         setLoading(true);
         setError(null);
 
         try {
-            const data = await injectedUseCase.execute();
+            const data = await getEventsUseCase(eventRepository);
             console.log("Fetched events:", data);
             setEvents(data);
         } catch (err) {
@@ -45,7 +45,7 @@ export function EventContextProvider({children}: EventContextProviderProps) {
 
     useEffect(() => {
         fetchEvents();
-    }, []);
+    }, [eventRepository]);
 
     return (
         <EventContext.Provider value={{ events, loading, error, refreshEvents: fetchEvents }}>

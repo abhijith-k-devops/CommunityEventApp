@@ -268,8 +268,8 @@ function createStyles(colors: any) {
             marginVertical: 12,
         },
         gridCard: {
-            flex: 1,
-            marginHorizontal: 8,
+            width: "48%",
+            marginHorizontal: "1%",
             marginVertical: 8,
         },
         columnWrapper: {

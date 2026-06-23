@@ -1,13 +1,8 @@
 import { EventRepository } from "../repository/EventRepository";
+import { Events } from "../model/Events";
 
-export class EventsUseCase {
-    private eventRepository: EventRepository;
+export type GetEventsUseCase = (repository: EventRepository) => Promise<Events[]>;
 
-    constructor(eventRepository: EventRepository) {
-        this.eventRepository = eventRepository;
-    }
-
-    async execute() {
-        return this.eventRepository.getEvents();
-    }
-}
+export const getEventsUseCase: GetEventsUseCase = async (repository) => {
+    return repository.getEvents();
+};
